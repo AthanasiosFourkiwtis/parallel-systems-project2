@@ -1,0 +1,2347 @@
+==========================================
+ASKISI 1 - CUDA Matrix Multiplication
+(self-contained: serial baseline + verify)
+==========================================
+
+----- N=512 THREADS=128 -----
+Matrix multiplication (CUDA + Serial baseline)
+N=512, threads/block=128 (16x8), blocks=2048 (32x64), tile=16
+Files: Amat512.txt, Bmat512.txt, expected Cmat512.txt
+
+--- SERIAL (host) ---
+Serial: 0.126240 sec
+
+--- GPU (CUDA) - warm-up + 4 timed runs ---
+GPU warm-up: done (not counted)
+GPU run 1: 0.001166 sec
+GPU run 2: 0.001158 sec
+GPU run 3: 0.001156 sec
+GPU run 4: 0.001166 sec
+GPU avg: 0.001161 sec
+
+--- RESULTS ---
+  Serial:        0.126240 sec
+  GPU avg:       0.001161 sec
+  Speedup:       108.69x
+  Verification vs serial: OK
+  Verification vs Cmat512.txt: OK
+
+----- N=512 THREADS=256 -----
+Matrix multiplication (CUDA + Serial baseline)
+N=512, threads/block=256 (16x16), blocks=1024 (32x32), tile=16
+Files: Amat512.txt, Bmat512.txt, expected Cmat512.txt
+
+--- SERIAL (host) ---
+Serial: 0.124775 sec
+
+--- GPU (CUDA) - warm-up + 4 timed runs ---
+GPU warm-up: done (not counted)
+GPU run 1: 0.001156 sec
+GPU run 2: 0.001120 sec
+GPU run 3: 0.001122 sec
+GPU run 4: 0.001125 sec
+GPU avg: 0.001131 sec
+
+--- RESULTS ---
+  Serial:        0.124775 sec
+  GPU avg:       0.001131 sec
+  Speedup:       110.34x
+  Verification vs serial: OK
+  Verification vs Cmat512.txt: OK
+
+----- N=512 THREADS=512 -----
+Matrix multiplication (CUDA + Serial baseline)
+N=512, threads/block=512 (16x32), blocks=512 (32x16), tile=16
+Files: Amat512.txt, Bmat512.txt, expected Cmat512.txt
+
+--- SERIAL (host) ---
+Serial: 0.118165 sec
+
+--- GPU (CUDA) - warm-up + 4 timed runs ---
+GPU warm-up: done (not counted)
+GPU run 1: 0.001164 sec
+GPU run 2: 0.001145 sec
+GPU run 3: 0.001149 sec
+GPU run 4: 0.001134 sec
+GPU avg: 0.001148 sec
+
+--- RESULTS ---
+  Serial:        0.118165 sec
+  GPU avg:       0.001148 sec
+  Speedup:       102.93x
+  Verification vs serial: OK
+  Verification vs Cmat512.txt: OK
+
+----- N=1024 THREADS=128 -----
+Matrix multiplication (CUDA + Serial baseline)
+N=1024, threads/block=128 (16x8), blocks=8192 (64x128), tile=16
+Files: Amat1024.txt, Bmat1024.txt, expected Cmat1024.txt
+
+--- SERIAL (host) ---
+Serial: 3.078093 sec
+
+--- GPU (CUDA) - warm-up + 4 timed runs ---
+GPU warm-up: done (not counted)
+GPU run 1: 0.004872 sec
+GPU run 2: 0.004766 sec
+GPU run 3: 0.004779 sec
+GPU run 4: 0.004782 sec
+GPU avg: 0.004800 sec
+
+--- RESULTS ---
+  Serial:        3.078093 sec
+  GPU avg:       0.004800 sec
+  Speedup:       641.30x
+  Verification vs serial: OK
+  Verification vs Cmat1024.txt: OK
+
+----- N=1024 THREADS=256 -----
+Matrix multiplication (CUDA + Serial baseline)
+N=1024, threads/block=256 (16x16), blocks=4096 (64x64), tile=16
+Files: Amat1024.txt, Bmat1024.txt, expected Cmat1024.txt
+
+--- SERIAL (host) ---
+Serial: 3.066269 sec
+
+--- GPU (CUDA) - warm-up + 4 timed runs ---
+GPU warm-up: done (not counted)
+GPU run 1: 0.004732 sec
+GPU run 2: 0.004523 sec
+GPU run 3: 0.004565 sec
+GPU run 4: 0.004519 sec
+GPU avg: 0.004585 sec
+
+--- RESULTS ---
+  Serial:        3.066269 sec
+  GPU avg:       0.004585 sec
+  Speedup:       668.80x
+  Verification vs serial: OK
+  Verification vs Cmat1024.txt: OK
+
+----- N=1024 THREADS=512 -----
+Matrix multiplication (CUDA + Serial baseline)
+N=1024, threads/block=512 (16x32), blocks=2048 (64x32), tile=16
+Files: Amat1024.txt, Bmat1024.txt, expected Cmat1024.txt
+
+--- SERIAL (host) ---
+Serial: 3.060791 sec
+
+--- GPU (CUDA) - warm-up + 4 timed runs ---
+GPU warm-up: done (not counted)
+GPU run 1: 0.004951 sec
+GPU run 2: 0.004781 sec
+GPU run 3: 0.004761 sec
+GPU run 4: 0.004761 sec
+GPU avg: 0.004813 sec
+
+--- RESULTS ---
+  Serial:        3.060791 sec
+  GPU avg:       0.004813 sec
+  Speedup:       635.88x
+  Verification vs serial: OK
+  Verification vs Cmat1024.txt: OK
+
+----- N=2048 THREADS=128 -----
+Matrix multiplication (CUDA + Serial baseline)
+N=2048, threads/block=128 (16x8), blocks=32768 (128x256), tile=16
+Files: Amat2048.txt, Bmat2048.txt, expected Cmat2048.txt
+
+--- SERIAL (host) ---
+Serial: 24.535971 sec
+
+--- GPU (CUDA) - warm-up + 4 timed runs ---
+GPU warm-up: done (not counted)
+GPU run 1: 0.032538 sec
+GPU run 2: 0.032437 sec
+GPU run 3: 0.032392 sec
+GPU run 4: 0.031837 sec
+GPU avg: 0.032301 sec
+
+--- RESULTS ---
+  Serial:        24.535971 sec
+  GPU avg:       0.032301 sec
+  Speedup:       759.60x
+  Verification vs serial: OK
+  Verification vs Cmat2048.txt: OK
+
+----- N=2048 THREADS=256 -----
+Matrix multiplication (CUDA + Serial baseline)
+N=2048, threads/block=256 (16x16), blocks=16384 (128x128), tile=16
+Files: Amat2048.txt, Bmat2048.txt, expected Cmat2048.txt
+
+--- SERIAL (host) ---
+Serial: 24.489216 sec
+
+--- GPU (CUDA) - warm-up + 4 timed runs ---
+GPU warm-up: done (not counted)
+GPU run 1: 0.026492 sec
+GPU run 2: 0.026459 sec
+GPU run 3: 0.026377 sec
+GPU run 4: 0.025633 sec
+GPU avg: 0.026240 sec
+
+--- RESULTS ---
+  Serial:        24.489216 sec
+  GPU avg:       0.026240 sec
+  Speedup:       933.27x
+  Verification vs serial: OK
+  Verification vs Cmat2048.txt: OK
+
+----- N=2048 THREADS=512 -----
+Matrix multiplication (CUDA + Serial baseline)
+N=2048, threads/block=512 (16x32), blocks=8192 (128x64), tile=16
+Files: Amat2048.txt, Bmat2048.txt, expected Cmat2048.txt
+
+--- SERIAL (host) ---
+Serial: 24.492629 sec
+
+--- GPU (CUDA) - warm-up + 4 timed runs ---
+GPU warm-up: done (not counted)
+GPU run 1: 0.025147 sec
+GPU run 2: 0.025097 sec
+GPU run 3: 0.025106 sec
+GPU run 4: 0.025088 sec
+GPU avg: 0.025109 sec
+
+--- RESULTS ---
+  Serial:        24.492629 sec
+  GPU avg:       0.025109 sec
+  Speedup:       975.43x
+  Verification vs serial: OK
+  Verification vs Cmat2048.txt: OK
+
+==========================================
+ASKISI 2 - Sobel filter
+(experiments for 500x500, 1000x1000, 1500x1500)
+==========================================
+
+==========================================
+SOBEL IMAGE=500.bmp
+==========================================
+
+----- IMAGE=500.bmp THREAD_LIMIT=32 NUM_TEAMS=120 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. minnctapersm will be ignored
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=120 THREAD_LIMIT=32, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008425 sec (not counted)
+serial run 1: 0.008172 sec
+serial run 2: 0.008168 sec
+serial run 3: 0.008238 sec
+serial run 4: 0.008169 sec
+serial avg: 0.008187 sec
+
+gpu-combined warm-up: 0.001115 sec (not counted)
+gpu-combined run 1: 0.000949 sec
+gpu-combined run 2: 0.001067 sec
+gpu-combined run 3: 0.000817 sec
+gpu-combined run 4: 0.000889 sec
+gpu (combined) avg: 0.000931 sec
+
+gpu-nested warm-up: 0.001204 sec (not counted)
+gpu-nested run 1: 0.000936 sec
+gpu-nested run 2: 0.001006 sec
+gpu-nested run 3: 0.000890 sec
+gpu-nested run 4: 0.000824 sec
+gpu (nested) avg: 0.000914 sec
+
+Results:
+  serial:       0.008187 sec
+  gpu combined: 0.000931 sec  speedup=8.80x
+  gpu nested:   0.000914 sec  speedup=8.96x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=64 NUM_TEAMS=60 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. minnctapersm will be ignored
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=60 THREAD_LIMIT=64, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008662 sec (not counted)
+serial run 1: 0.008398 sec
+serial run 2: 0.008519 sec
+serial run 3: 0.008444 sec
+serial run 4: 0.008415 sec
+serial avg: 0.008444 sec
+
+gpu-combined warm-up: 0.001129 sec (not counted)
+gpu-combined run 1: 0.000840 sec
+gpu-combined run 2: 0.000829 sec
+gpu-combined run 3: 0.000885 sec
+gpu-combined run 4: 0.000823 sec
+gpu (combined) avg: 0.000844 sec
+
+gpu-nested warm-up: 0.000956 sec (not counted)
+gpu-nested run 1: 0.000794 sec
+gpu-nested run 2: 0.000781 sec
+gpu-nested run 3: 0.000787 sec
+gpu-nested run 4: 0.000770 sec
+gpu (nested) avg: 0.000783 sec
+
+Results:
+  serial:       0.008444 sec
+  gpu combined: 0.000844 sec  speedup=10.00x
+  gpu nested:   0.000783 sec  speedup=10.79x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=96 NUM_TEAMS=40 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. minnctapersm will be ignored
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=40 THREAD_LIMIT=96, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008434 sec (not counted)
+serial run 1: 0.008236 sec
+serial run 2: 0.008165 sec
+serial run 3: 0.008746 sec
+serial run 4: 0.008167 sec
+serial avg: 0.008329 sec
+
+gpu-combined warm-up: 0.001076 sec (not counted)
+gpu-combined run 1: 0.000937 sec
+gpu-combined run 2: 0.001024 sec
+gpu-combined run 3: 0.000994 sec
+gpu-combined run 4: 0.000922 sec
+gpu (combined) avg: 0.000969 sec
+
+gpu-nested warm-up: 0.001132 sec (not counted)
+gpu-nested run 1: 0.000839 sec
+gpu-nested run 2: 0.000882 sec
+gpu-nested run 3: 0.000902 sec
+gpu-nested run 4: 0.000828 sec
+gpu (nested) avg: 0.000863 sec
+
+Results:
+  serial:       0.008329 sec
+  gpu combined: 0.000969 sec  speedup=8.59x
+  gpu nested:   0.000863 sec  speedup=9.65x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=128 NUM_TEAMS=30 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=30 THREAD_LIMIT=128, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008768 sec (not counted)
+serial run 1: 0.008422 sec
+serial run 2: 0.008262 sec
+serial run 3: 0.008538 sec
+serial run 4: 0.008261 sec
+serial avg: 0.008371 sec
+
+gpu-combined warm-up: 0.003973 sec (not counted)
+gpu-combined run 1: 0.004763 sec
+gpu-combined run 2: 0.004947 sec
+gpu-combined run 3: 0.004971 sec
+gpu-combined run 4: 0.004950 sec
+gpu (combined) avg: 0.004908 sec
+
+gpu-nested warm-up: 0.005180 sec (not counted)
+gpu-nested run 1: 0.004605 sec
+gpu-nested run 2: 0.004931 sec
+gpu-nested run 3: 0.004880 sec
+gpu-nested run 4: 0.004886 sec
+gpu (nested) avg: 0.004825 sec
+
+Results:
+  serial:       0.008371 sec
+  gpu combined: 0.004908 sec  speedup=1.71x
+  gpu nested:   0.004825 sec  speedup=1.73x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=160 NUM_TEAMS=24 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=24 THREAD_LIMIT=160, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008876 sec (not counted)
+serial run 1: 0.008644 sec
+serial run 2: 0.008892 sec
+serial run 3: 0.008774 sec
+serial run 4: 0.008736 sec
+serial avg: 0.008762 sec
+
+gpu-combined warm-up: 0.001193 sec (not counted)
+gpu-combined run 1: 0.000899 sec
+gpu-combined run 2: 0.000835 sec
+gpu-combined run 3: 0.000839 sec
+gpu-combined run 4: 0.000832 sec
+gpu (combined) avg: 0.000851 sec
+
+gpu-nested warm-up: 0.001027 sec (not counted)
+gpu-nested run 1: 0.000840 sec
+gpu-nested run 2: 0.000820 sec
+gpu-nested run 3: 0.000847 sec
+gpu-nested run 4: 0.000831 sec
+gpu (nested) avg: 0.000834 sec
+
+Results:
+  serial:       0.008762 sec
+  gpu combined: 0.000851 sec  speedup=10.29x
+  gpu nested:   0.000834 sec  speedup=10.50x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=192 NUM_TEAMS=20 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=20 THREAD_LIMIT=192, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008516 sec (not counted)
+serial run 1: 0.008171 sec
+serial run 2: 0.008238 sec
+serial run 3: 0.008259 sec
+serial run 4: 0.008227 sec
+serial avg: 0.008224 sec
+
+gpu-combined warm-up: 0.001167 sec (not counted)
+gpu-combined run 1: 0.000913 sec
+gpu-combined run 2: 0.000907 sec
+gpu-combined run 3: 0.000847 sec
+gpu-combined run 4: 0.000851 sec
+gpu (combined) avg: 0.000879 sec
+
+gpu-nested warm-up: 0.001002 sec (not counted)
+gpu-nested run 1: 0.000815 sec
+gpu-nested run 2: 0.000820 sec
+gpu-nested run 3: 0.000826 sec
+gpu-nested run 4: 0.000824 sec
+gpu (nested) avg: 0.000821 sec
+
+Results:
+  serial:       0.008224 sec
+  gpu combined: 0.000879 sec  speedup=9.35x
+  gpu nested:   0.000821 sec  speedup=10.01x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=256 NUM_TEAMS=15 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=15 THREAD_LIMIT=256, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008508 sec (not counted)
+serial run 1: 0.008178 sec
+serial run 2: 0.008235 sec
+serial run 3: 0.008329 sec
+serial run 4: 0.008265 sec
+serial avg: 0.008252 sec
+
+gpu-combined warm-up: 0.001157 sec (not counted)
+gpu-combined run 1: 0.000926 sec
+gpu-combined run 2: 0.000904 sec
+gpu-combined run 3: 0.000863 sec
+gpu-combined run 4: 0.000846 sec
+gpu (combined) avg: 0.000885 sec
+
+gpu-nested warm-up: 0.001016 sec (not counted)
+gpu-nested run 1: 0.000834 sec
+gpu-nested run 2: 0.000822 sec
+gpu-nested run 3: 0.000837 sec
+gpu-nested run 4: 0.000834 sec
+gpu (nested) avg: 0.000832 sec
+
+Results:
+  serial:       0.008252 sec
+  gpu combined: 0.000885 sec  speedup=9.33x
+  gpu nested:   0.000832 sec  speedup=9.92x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=320 NUM_TEAMS=12 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=12 THREAD_LIMIT=320, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008515 sec (not counted)
+serial run 1: 0.008171 sec
+serial run 2: 0.008170 sec
+serial run 3: 0.008254 sec
+serial run 4: 0.008237 sec
+serial avg: 0.008208 sec
+
+gpu-combined warm-up: 0.001225 sec (not counted)
+gpu-combined run 1: 0.000974 sec
+gpu-combined run 2: 0.000976 sec
+gpu-combined run 3: 0.000909 sec
+gpu-combined run 4: 0.000906 sec
+gpu (combined) avg: 0.000941 sec
+
+gpu-nested warm-up: 0.001087 sec (not counted)
+gpu-nested run 1: 0.000961 sec
+gpu-nested run 2: 0.000964 sec
+gpu-nested run 3: 0.000900 sec
+gpu-nested run 4: 0.000908 sec
+gpu (nested) avg: 0.000933 sec
+
+Results:
+  serial:       0.008208 sec
+  gpu combined: 0.000941 sec  speedup=8.72x
+  gpu nested:   0.000933 sec  speedup=8.79x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=384 NUM_TEAMS=10 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=10 THREAD_LIMIT=384, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008453 sec (not counted)
+serial run 1: 0.008136 sec
+serial run 2: 0.008264 sec
+serial run 3: 0.008359 sec
+serial run 4: 0.008281 sec
+serial avg: 0.008260 sec
+
+gpu-combined warm-up: 0.001234 sec (not counted)
+gpu-combined run 1: 0.000956 sec
+gpu-combined run 2: 0.000988 sec
+gpu-combined run 3: 0.000913 sec
+gpu-combined run 4: 0.000900 sec
+gpu (combined) avg: 0.000939 sec
+
+gpu-nested warm-up: 0.001129 sec (not counted)
+gpu-nested run 1: 0.001005 sec
+gpu-nested run 2: 0.000909 sec
+gpu-nested run 3: 0.000937 sec
+gpu-nested run 4: 0.000941 sec
+gpu (nested) avg: 0.000948 sec
+
+Results:
+  serial:       0.008260 sec
+  gpu combined: 0.000939 sec  speedup=8.79x
+  gpu nested:   0.000948 sec  speedup=8.71x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=480 NUM_TEAMS=8 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=8 THREAD_LIMIT=480, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008529 sec (not counted)
+serial run 1: 0.008169 sec
+serial run 2: 0.008230 sec
+serial run 3: 0.008252 sec
+serial run 4: 0.008168 sec
+serial avg: 0.008205 sec
+
+gpu-combined warm-up: 0.001265 sec (not counted)
+gpu-combined run 1: 0.000994 sec
+gpu-combined run 2: 0.001015 sec
+gpu-combined run 3: 0.000952 sec
+gpu-combined run 4: 0.000954 sec
+gpu (combined) avg: 0.000979 sec
+
+gpu-nested warm-up: 0.001224 sec (not counted)
+gpu-nested run 1: 0.001107 sec
+gpu-nested run 2: 0.001118 sec
+gpu-nested run 3: 0.001033 sec
+gpu-nested run 4: 0.001044 sec
+gpu (nested) avg: 0.001076 sec
+
+Results:
+  serial:       0.008205 sec
+  gpu combined: 0.000979 sec  speedup=8.38x
+  gpu nested:   0.001076 sec  speedup=7.63x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=512 NUM_TEAMS=8 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=8 THREAD_LIMIT=512, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008505 sec (not counted)
+serial run 1: 0.008264 sec
+serial run 2: 0.008170 sec
+serial run 3: 0.008414 sec
+serial run 4: 0.008234 sec
+serial avg: 0.008271 sec
+
+gpu-combined warm-up: 0.001257 sec (not counted)
+gpu-combined run 1: 0.000982 sec
+gpu-combined run 2: 0.001000 sec
+gpu-combined run 3: 0.000932 sec
+gpu-combined run 4: 0.000922 sec
+gpu (combined) avg: 0.000959 sec
+
+gpu-nested warm-up: 0.001156 sec (not counted)
+gpu-nested run 1: 0.000960 sec
+gpu-nested run 2: 0.000951 sec
+gpu-nested run 3: 0.000937 sec
+gpu-nested run 4: 0.000955 sec
+gpu (nested) avg: 0.000951 sec
+
+Results:
+  serial:       0.008271 sec
+  gpu combined: 0.000959 sec  speedup=8.62x
+  gpu nested:   0.000951 sec  speedup=8.70x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=640 NUM_TEAMS=6 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=6 THREAD_LIMIT=640, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008493 sec (not counted)
+serial run 1: 0.008166 sec
+serial run 2: 0.008163 sec
+serial run 3: 0.008259 sec
+serial run 4: 0.008225 sec
+serial avg: 0.008203 sec
+
+gpu-combined warm-up: 0.001335 sec (not counted)
+gpu-combined run 1: 0.001090 sec
+gpu-combined run 2: 0.001074 sec
+gpu-combined run 3: 0.001004 sec
+gpu-combined run 4: 0.001007 sec
+gpu (combined) avg: 0.001044 sec
+
+gpu-nested warm-up: 0.001231 sec (not counted)
+gpu-nested run 1: 0.001106 sec
+gpu-nested run 2: 0.001098 sec
+gpu-nested run 3: 0.001044 sec
+gpu-nested run 4: 0.001112 sec
+gpu (nested) avg: 0.001090 sec
+
+Results:
+  serial:       0.008203 sec
+  gpu combined: 0.001044 sec  speedup=7.86x
+  gpu nested:   0.001090 sec  speedup=7.53x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=768 NUM_TEAMS=5 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=5 THREAD_LIMIT=768, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008445 sec (not counted)
+serial run 1: 0.008243 sec
+serial run 2: 0.008331 sec
+serial run 3: 0.008323 sec
+serial run 4: 0.008236 sec
+serial avg: 0.008283 sec
+
+gpu-combined warm-up: 0.001396 sec (not counted)
+gpu-combined run 1: 0.001180 sec
+gpu-combined run 2: 0.001151 sec
+gpu-combined run 3: 0.001079 sec
+gpu-combined run 4: 0.001081 sec
+gpu (combined) avg: 0.001123 sec
+
+gpu-nested warm-up: 0.001329 sec (not counted)
+gpu-nested run 1: 0.001150 sec
+gpu-nested run 2: 0.001220 sec
+gpu-nested run 3: 0.001153 sec
+gpu-nested run 4: 0.001144 sec
+gpu (nested) avg: 0.001167 sec
+
+Results:
+  serial:       0.008283 sec
+  gpu combined: 0.001123 sec  speedup=7.38x
+  gpu nested:   0.001167 sec  speedup=7.10x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=960 NUM_TEAMS=4 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=4 THREAD_LIMIT=960, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008512 sec (not counted)
+serial run 1: 0.008239 sec
+serial run 2: 0.008232 sec
+serial run 3: 0.008321 sec
+serial run 4: 0.008165 sec
+serial avg: 0.008239 sec
+
+gpu-combined warm-up: 0.001594 sec (not counted)
+gpu-combined run 1: 0.001353 sec
+gpu-combined run 2: 0.001359 sec
+gpu-combined run 3: 0.001284 sec
+gpu-combined run 4: 0.001292 sec
+gpu (combined) avg: 0.001322 sec
+
+gpu-nested warm-up: 0.001670 sec (not counted)
+gpu-nested run 1: 0.001489 sec
+gpu-nested run 2: 0.001417 sec
+gpu-nested run 3: 0.001414 sec
+gpu-nested run 4: 0.001482 sec
+gpu (nested) avg: 0.001451 sec
+
+Results:
+  serial:       0.008239 sec
+  gpu combined: 0.001322 sec  speedup=6.23x
+  gpu nested:   0.001451 sec  speedup=5.68x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=500.bmp THREAD_LIMIT=1024 NUM_TEAMS=4 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=500, w=500) >>>
+NUM_TEAMS=4 THREAD_LIMIT=1024, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.008525 sec (not counted)
+serial run 1: 0.008227 sec
+serial run 2: 0.008227 sec
+serial run 3: 0.008255 sec
+serial run 4: 0.008168 sec
+serial avg: 0.008219 sec
+
+gpu-combined warm-up: 0.001557 sec (not counted)
+gpu-combined run 1: 0.001312 sec
+gpu-combined run 2: 0.001317 sec
+gpu-combined run 3: 0.001261 sec
+gpu-combined run 4: 0.001262 sec
+gpu (combined) avg: 0.001288 sec
+
+gpu-nested warm-up: 0.001593 sec (not counted)
+gpu-nested run 1: 0.001479 sec
+gpu-nested run 2: 0.001410 sec
+gpu-nested run 3: 0.001441 sec
+gpu-nested run 4: 0.001406 sec
+gpu (nested) avg: 0.001434 sec
+
+Results:
+  serial:       0.008219 sec
+  gpu combined: 0.001288 sec  speedup=6.38x
+  gpu nested:   0.001434 sec  speedup=5.73x
+verification combined: OK
+verification nested:   OK
+
+==========================================
+SOBEL IMAGE=1000.bmp
+==========================================
+
+----- IMAGE=1000.bmp THREAD_LIMIT=32 NUM_TEAMS=120 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. minnctapersm will be ignored
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=120 THREAD_LIMIT=32, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034463 sec (not counted)
+serial run 1: 0.032858 sec
+serial run 2: 0.032701 sec
+serial run 3: 0.032958 sec
+serial run 4: 0.032670 sec
+serial avg: 0.032797 sec
+
+gpu-combined warm-up: 0.004934 sec (not counted)
+gpu-combined run 1: 0.003137 sec
+gpu-combined run 2: 0.003107 sec
+gpu-combined run 3: 0.003132 sec
+gpu-combined run 4: 0.003060 sec
+gpu (combined) avg: 0.003109 sec
+
+gpu-nested warm-up: 0.004407 sec (not counted)
+gpu-nested run 1: 0.002918 sec
+gpu-nested run 2: 0.002898 sec
+gpu-nested run 3: 0.002898 sec
+gpu-nested run 4: 0.002903 sec
+gpu (nested) avg: 0.002904 sec
+
+Results:
+  serial:       0.032797 sec
+  gpu combined: 0.003109 sec  speedup=10.55x
+  gpu nested:   0.002904 sec  speedup=11.29x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=64 NUM_TEAMS=60 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. minnctapersm will be ignored
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=60 THREAD_LIMIT=64, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034110 sec (not counted)
+serial run 1: 0.032887 sec
+serial run 2: 0.032974 sec
+serial run 3: 0.032703 sec
+serial run 4: 0.032613 sec
+serial avg: 0.032794 sec
+
+gpu-combined warm-up: 0.005000 sec (not counted)
+gpu-combined run 1: 0.003215 sec
+gpu-combined run 2: 0.003174 sec
+gpu-combined run 3: 0.003225 sec
+gpu-combined run 4: 0.003231 sec
+gpu (combined) avg: 0.003211 sec
+
+gpu-nested warm-up: 0.004400 sec (not counted)
+gpu-nested run 1: 0.002952 sec
+gpu-nested run 2: 0.002983 sec
+gpu-nested run 3: 0.002870 sec
+gpu-nested run 4: 0.002983 sec
+gpu (nested) avg: 0.002947 sec
+
+Results:
+  serial:       0.032794 sec
+  gpu combined: 0.003211 sec  speedup=10.21x
+  gpu nested:   0.002947 sec  speedup=11.13x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=96 NUM_TEAMS=40 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. minnctapersm will be ignored
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=40 THREAD_LIMIT=96, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034117 sec (not counted)
+serial run 1: 0.032627 sec
+serial run 2: 0.032958 sec
+serial run 3: 0.032793 sec
+serial run 4: 0.032613 sec
+serial avg: 0.032748 sec
+
+gpu-combined warm-up: 0.005023 sec (not counted)
+gpu-combined run 1: 0.003328 sec
+gpu-combined run 2: 0.003327 sec
+gpu-combined run 3: 0.003190 sec
+gpu-combined run 4: 0.003347 sec
+gpu (combined) avg: 0.003298 sec
+
+gpu-nested warm-up: 0.004500 sec (not counted)
+gpu-nested run 1: 0.002993 sec
+gpu-nested run 2: 0.003006 sec
+gpu-nested run 3: 0.003001 sec
+gpu-nested run 4: 0.003000 sec
+gpu (nested) avg: 0.003000 sec
+
+Results:
+  serial:       0.032748 sec
+  gpu combined: 0.003298 sec  speedup=9.93x
+  gpu nested:   0.003000 sec  speedup=10.92x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=128 NUM_TEAMS=30 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=30 THREAD_LIMIT=128, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034158 sec (not counted)
+serial run 1: 0.032579 sec
+serial run 2: 0.032621 sec
+serial run 3: 0.032682 sec
+serial run 4: 0.032916 sec
+serial avg: 0.032699 sec
+
+gpu-combined warm-up: 0.005007 sec (not counted)
+gpu-combined run 1: 0.003186 sec
+gpu-combined run 2: 0.003135 sec
+gpu-combined run 3: 0.003104 sec
+gpu-combined run 4: 0.003107 sec
+gpu (combined) avg: 0.003133 sec
+
+gpu-nested warm-up: 0.004412 sec (not counted)
+gpu-nested run 1: 0.002883 sec
+gpu-nested run 2: 0.002892 sec
+gpu-nested run 3: 0.002869 sec
+gpu-nested run 4: 0.002883 sec
+gpu (nested) avg: 0.002882 sec
+
+Results:
+  serial:       0.032699 sec
+  gpu combined: 0.003133 sec  speedup=10.44x
+  gpu nested:   0.002882 sec  speedup=11.35x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=160 NUM_TEAMS=24 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=24 THREAD_LIMIT=160, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034234 sec (not counted)
+serial run 1: 0.032633 sec
+serial run 2: 0.032687 sec
+serial run 3: 0.032930 sec
+serial run 4: 0.032873 sec
+serial avg: 0.032781 sec
+
+gpu-combined warm-up: 0.005048 sec (not counted)
+gpu-combined run 1: 0.003293 sec
+gpu-combined run 2: 0.003253 sec
+gpu-combined run 3: 0.003183 sec
+gpu-combined run 4: 0.003363 sec
+gpu (combined) avg: 0.003273 sec
+
+gpu-nested warm-up: 0.004530 sec (not counted)
+gpu-nested run 1: 0.003133 sec
+gpu-nested run 2: 0.003129 sec
+gpu-nested run 3: 0.002987 sec
+gpu-nested run 4: 0.002968 sec
+gpu (nested) avg: 0.003054 sec
+
+Results:
+  serial:       0.032781 sec
+  gpu combined: 0.003273 sec  speedup=10.02x
+  gpu nested:   0.003054 sec  speedup=10.73x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=192 NUM_TEAMS=20 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=20 THREAD_LIMIT=192, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034553 sec (not counted)
+serial run 1: 0.032653 sec
+serial run 2: 0.032604 sec
+serial run 3: 0.032871 sec
+serial run 4: 0.032580 sec
+serial avg: 0.032677 sec
+
+gpu-combined warm-up: 0.005269 sec (not counted)
+gpu-combined run 1: 0.003471 sec
+gpu-combined run 2: 0.003435 sec
+gpu-combined run 3: 0.003372 sec
+gpu-combined run 4: 0.003435 sec
+gpu (combined) avg: 0.003428 sec
+
+gpu-nested warm-up: 0.004665 sec (not counted)
+gpu-nested run 1: 0.003140 sec
+gpu-nested run 2: 0.003106 sec
+gpu-nested run 3: 0.003107 sec
+gpu-nested run 4: 0.003108 sec
+gpu (nested) avg: 0.003115 sec
+
+Results:
+  serial:       0.032677 sec
+  gpu combined: 0.003428 sec  speedup=9.53x
+  gpu nested:   0.003115 sec  speedup=10.49x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=256 NUM_TEAMS=15 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=15 THREAD_LIMIT=256, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034487 sec (not counted)
+serial run 1: 0.032982 sec
+serial run 2: 0.032951 sec
+serial run 3: 0.033042 sec
+serial run 4: 0.032852 sec
+serial avg: 0.032957 sec
+
+gpu-combined warm-up: 0.005327 sec (not counted)
+gpu-combined run 1: 0.003521 sec
+gpu-combined run 2: 0.003452 sec
+gpu-combined run 3: 0.003563 sec
+gpu-combined run 4: 0.003392 sec
+gpu (combined) avg: 0.003482 sec
+
+gpu-nested warm-up: 0.004630 sec (not counted)
+gpu-nested run 1: 0.003117 sec
+gpu-nested run 2: 0.003068 sec
+gpu-nested run 3: 0.003109 sec
+gpu-nested run 4: 0.003050 sec
+gpu (nested) avg: 0.003086 sec
+
+Results:
+  serial:       0.032957 sec
+  gpu combined: 0.003482 sec  speedup=9.46x
+  gpu nested:   0.003086 sec  speedup=10.68x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=320 NUM_TEAMS=12 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=12 THREAD_LIMIT=320, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034381 sec (not counted)
+serial run 1: 0.032621 sec
+serial run 2: 0.032581 sec
+serial run 3: 0.032942 sec
+serial run 4: 0.032813 sec
+serial avg: 0.032739 sec
+
+gpu-combined warm-up: 0.005508 sec (not counted)
+gpu-combined run 1: 0.003766 sec
+gpu-combined run 2: 0.003824 sec
+gpu-combined run 3: 0.003691 sec
+gpu-combined run 4: 0.003794 sec
+gpu (combined) avg: 0.003769 sec
+
+gpu-nested warm-up: 0.005095 sec (not counted)
+gpu-nested run 1: 0.003573 sec
+gpu-nested run 2: 0.003567 sec
+gpu-nested run 3: 0.003627 sec
+gpu-nested run 4: 0.003563 sec
+gpu (nested) avg: 0.003582 sec
+
+Results:
+  serial:       0.032739 sec
+  gpu combined: 0.003769 sec  speedup=8.69x
+  gpu nested:   0.003582 sec  speedup=9.14x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=384 NUM_TEAMS=10 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=10 THREAD_LIMIT=384, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034178 sec (not counted)
+serial run 1: 0.032627 sec
+serial run 2: 0.032966 sec
+serial run 3: 0.033062 sec
+serial run 4: 0.032854 sec
+serial avg: 0.032877 sec
+
+gpu-combined warm-up: 0.005525 sec (not counted)
+gpu-combined run 1: 0.003755 sec
+gpu-combined run 2: 0.003730 sec
+gpu-combined run 3: 0.003691 sec
+gpu-combined run 4: 0.003713 sec
+gpu (combined) avg: 0.003722 sec
+
+gpu-nested warm-up: 0.005057 sec (not counted)
+gpu-nested run 1: 0.003525 sec
+gpu-nested run 2: 0.003447 sec
+gpu-nested run 3: 0.003540 sec
+gpu-nested run 4: 0.003445 sec
+gpu (nested) avg: 0.003489 sec
+
+Results:
+  serial:       0.032877 sec
+  gpu combined: 0.003722 sec  speedup=8.83x
+  gpu nested:   0.003489 sec  speedup=9.42x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=480 NUM_TEAMS=8 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=8 THREAD_LIMIT=480, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034380 sec (not counted)
+serial run 1: 0.032868 sec
+serial run 2: 0.032864 sec
+serial run 3: 0.032766 sec
+serial run 4: 0.032667 sec
+serial avg: 0.032791 sec
+
+gpu-combined warm-up: 0.005711 sec (not counted)
+gpu-combined run 1: 0.004067 sec
+gpu-combined run 2: 0.004006 sec
+gpu-combined run 3: 0.003990 sec
+gpu-combined run 4: 0.004058 sec
+gpu (combined) avg: 0.004030 sec
+
+gpu-nested warm-up: 0.005391 sec (not counted)
+gpu-nested run 1: 0.003935 sec
+gpu-nested run 2: 0.003879 sec
+gpu-nested run 3: 0.003927 sec
+gpu-nested run 4: 0.003883 sec
+gpu (nested) avg: 0.003906 sec
+
+Results:
+  serial:       0.032791 sec
+  gpu combined: 0.004030 sec  speedup=8.14x
+  gpu nested:   0.003906 sec  speedup=8.40x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=512 NUM_TEAMS=8 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=8 THREAD_LIMIT=512, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034200 sec (not counted)
+serial run 1: 0.032863 sec
+serial run 2: 0.032586 sec
+serial run 3: 0.033045 sec
+serial run 4: 0.033099 sec
+serial avg: 0.032898 sec
+
+gpu-combined warm-up: 0.005716 sec (not counted)
+gpu-combined run 1: 0.003839 sec
+gpu-combined run 2: 0.003814 sec
+gpu-combined run 3: 0.003823 sec
+gpu-combined run 4: 0.003829 sec
+gpu (combined) avg: 0.003826 sec
+
+gpu-nested warm-up: 0.005143 sec (not counted)
+gpu-nested run 1: 0.003627 sec
+gpu-nested run 2: 0.003615 sec
+gpu-nested run 3: 0.003626 sec
+gpu-nested run 4: 0.003609 sec
+gpu (nested) avg: 0.003619 sec
+
+Results:
+  serial:       0.032898 sec
+  gpu combined: 0.003826 sec  speedup=8.60x
+  gpu nested:   0.003619 sec  speedup=9.09x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=640 NUM_TEAMS=6 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=6 THREAD_LIMIT=640, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034128 sec (not counted)
+serial run 1: 0.032892 sec
+serial run 2: 0.032979 sec
+serial run 3: 0.032704 sec
+serial run 4: 0.032928 sec
+serial avg: 0.032876 sec
+
+gpu-combined warm-up: 0.006029 sec (not counted)
+gpu-combined run 1: 0.004367 sec
+gpu-combined run 2: 0.004347 sec
+gpu-combined run 3: 0.004282 sec
+gpu-combined run 4: 0.004306 sec
+gpu (combined) avg: 0.004325 sec
+
+gpu-nested warm-up: 0.005641 sec (not counted)
+gpu-nested run 1: 0.004219 sec
+gpu-nested run 2: 0.004254 sec
+gpu-nested run 3: 0.004261 sec
+gpu-nested run 4: 0.004133 sec
+gpu (nested) avg: 0.004217 sec
+
+Results:
+  serial:       0.032876 sec
+  gpu combined: 0.004325 sec  speedup=7.60x
+  gpu nested:   0.004217 sec  speedup=7.80x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=768 NUM_TEAMS=5 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=5 THREAD_LIMIT=768, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034214 sec (not counted)
+serial run 1: 0.033000 sec
+serial run 2: 0.032988 sec
+serial run 3: 0.033107 sec
+serial run 4: 0.032931 sec
+serial avg: 0.033006 sec
+
+gpu-combined warm-up: 0.006301 sec (not counted)
+gpu-combined run 1: 0.004635 sec
+gpu-combined run 2: 0.004559 sec
+gpu-combined run 3: 0.004613 sec
+gpu-combined run 4: 0.004572 sec
+gpu (combined) avg: 0.004595 sec
+
+gpu-nested warm-up: 0.006113 sec (not counted)
+gpu-nested run 1: 0.004702 sec
+gpu-nested run 2: 0.004698 sec
+gpu-nested run 3: 0.004707 sec
+gpu-nested run 4: 0.004622 sec
+gpu (nested) avg: 0.004682 sec
+
+Results:
+  serial:       0.033006 sec
+  gpu combined: 0.004595 sec  speedup=7.18x
+  gpu nested:   0.004682 sec  speedup=7.05x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=960 NUM_TEAMS=4 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=4 THREAD_LIMIT=960, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034103 sec (not counted)
+serial run 1: 0.032829 sec
+serial run 2: 0.032682 sec
+serial run 3: 0.033111 sec
+serial run 4: 0.032776 sec
+serial avg: 0.032850 sec
+
+gpu-combined warm-up: 0.006949 sec (not counted)
+gpu-combined run 1: 0.005128 sec
+gpu-combined run 2: 0.005103 sec
+gpu-combined run 3: 0.005095 sec
+gpu-combined run 4: 0.005075 sec
+gpu (combined) avg: 0.005100 sec
+
+gpu-nested warm-up: 0.007135 sec (not counted)
+gpu-nested run 1: 0.005516 sec
+gpu-nested run 2: 0.005477 sec
+gpu-nested run 3: 0.005497 sec
+gpu-nested run 4: 0.005525 sec
+gpu (nested) avg: 0.005504 sec
+
+Results:
+  serial:       0.032850 sec
+  gpu combined: 0.005100 sec  speedup=6.44x
+  gpu nested:   0.005504 sec  speedup=5.97x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1000.bmp THREAD_LIMIT=1024 NUM_TEAMS=4 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1000, w=1000) >>>
+NUM_TEAMS=4 THREAD_LIMIT=1024, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.034089 sec (not counted)
+serial run 1: 0.032659 sec
+serial run 2: 0.032980 sec
+serial run 3: 0.032670 sec
+serial run 4: 0.032999 sec
+serial avg: 0.032827 sec
+
+gpu-combined warm-up: 0.006705 sec (not counted)
+gpu-combined run 1: 0.005008 sec
+gpu-combined run 2: 0.004983 sec
+gpu-combined run 3: 0.005031 sec
+gpu-combined run 4: 0.005036 sec
+gpu (combined) avg: 0.005014 sec
+
+gpu-nested warm-up: 0.006623 sec (not counted)
+gpu-nested run 1: 0.005177 sec
+gpu-nested run 2: 0.005286 sec
+gpu-nested run 3: 0.005326 sec
+gpu-nested run 4: 0.005287 sec
+gpu (nested) avg: 0.005269 sec
+
+Results:
+  serial:       0.032827 sec
+  gpu combined: 0.005014 sec  speedup=6.55x
+  gpu nested:   0.005269 sec  speedup=6.23x
+verification combined: OK
+verification nested:   OK
+
+==========================================
+SOBEL IMAGE=1500.bmp
+==========================================
+
+----- IMAGE=1500.bmp THREAD_LIMIT=32 NUM_TEAMS=120 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. minnctapersm will be ignored
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=120 THREAD_LIMIT=32, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.077087 sec (not counted)
+serial run 1: 0.073618 sec
+serial run 2: 0.073701 sec
+serial run 3: 0.073582 sec
+serial run 4: 0.073781 sec
+serial avg: 0.073670 sec
+
+gpu-combined warm-up: 0.011560 sec (not counted)
+gpu-combined run 1: 0.007493 sec
+gpu-combined run 2: 0.007482 sec
+gpu-combined run 3: 0.007374 sec
+gpu-combined run 4: 0.007474 sec
+gpu (combined) avg: 0.007456 sec
+
+gpu-nested warm-up: 0.010471 sec (not counted)
+gpu-nested run 1: 0.006974 sec
+gpu-nested run 2: 0.006935 sec
+gpu-nested run 3: 0.006946 sec
+gpu-nested run 4: 0.006955 sec
+gpu (nested) avg: 0.006952 sec
+
+Results:
+  serial:       0.073670 sec
+  gpu combined: 0.007456 sec  speedup=9.88x
+  gpu nested:   0.006952 sec  speedup=10.60x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=64 NUM_TEAMS=60 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. minnctapersm will be ignored
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=60 THREAD_LIMIT=64, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.077703 sec (not counted)
+serial run 1: 0.073746 sec
+serial run 2: 0.073751 sec
+serial run 3: 0.073604 sec
+serial run 4: 0.074389 sec
+serial avg: 0.073872 sec
+
+gpu-combined warm-up: 0.011486 sec (not counted)
+gpu-combined run 1: 0.007554 sec
+gpu-combined run 2: 0.007516 sec
+gpu-combined run 3: 0.007500 sec
+gpu-combined run 4: 0.007497 sec
+gpu (combined) avg: 0.007517 sec
+
+gpu-nested warm-up: 0.010258 sec (not counted)
+gpu-nested run 1: 0.006934 sec
+gpu-nested run 2: 0.006826 sec
+gpu-nested run 3: 0.006897 sec
+gpu-nested run 4: 0.006884 sec
+gpu (nested) avg: 0.006885 sec
+
+Results:
+  serial:       0.073872 sec
+  gpu combined: 0.007517 sec  speedup=9.83x
+  gpu nested:   0.006885 sec  speedup=10.73x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=96 NUM_TEAMS=40 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. minnctapersm will be ignored
+ptxas warning : Value of minnctapersm for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=40 THREAD_LIMIT=96, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.077977 sec (not counted)
+serial run 1: 0.074350 sec
+serial run 2: 0.074030 sec
+serial run 3: 0.074024 sec
+serial run 4: 0.073612 sec
+serial avg: 0.074004 sec
+
+gpu-combined warm-up: 0.011499 sec (not counted)
+gpu-combined run 1: 0.007691 sec
+gpu-combined run 2: 0.007632 sec
+gpu-combined run 3: 0.007618 sec
+gpu-combined run 4: 0.007627 sec
+gpu (combined) avg: 0.007642 sec
+
+gpu-nested warm-up: 0.010579 sec (not counted)
+gpu-nested run 1: 0.007069 sec
+gpu-nested run 2: 0.007082 sec
+gpu-nested run 3: 0.007131 sec
+gpu-nested run 4: 0.007086 sec
+gpu (nested) avg: 0.007092 sec
+
+Results:
+  serial:       0.074004 sec
+  gpu combined: 0.007642 sec  speedup=9.68x
+  gpu nested:   0.007092 sec  speedup=10.43x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=128 NUM_TEAMS=30 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=30 THREAD_LIMIT=128, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.077320 sec (not counted)
+serial run 1: 0.073877 sec
+serial run 2: 0.074022 sec
+serial run 3: 0.073778 sec
+serial run 4: 0.074052 sec
+serial avg: 0.073932 sec
+
+gpu-combined warm-up: 0.011651 sec (not counted)
+gpu-combined run 1: 0.007608 sec
+gpu-combined run 2: 0.007570 sec
+gpu-combined run 3: 0.007524 sec
+gpu-combined run 4: 0.007525 sec
+gpu (combined) avg: 0.007557 sec
+
+gpu-nested warm-up: 0.009814 sec (not counted)
+gpu-nested run 1: 0.006982 sec
+gpu-nested run 2: 0.006963 sec
+gpu-nested run 3: 0.006954 sec
+gpu-nested run 4: 0.006959 sec
+gpu (nested) avg: 0.006965 sec
+
+Results:
+  serial:       0.073932 sec
+  gpu combined: 0.007557 sec  speedup=9.78x
+  gpu nested:   0.006965 sec  speedup=10.62x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=160 NUM_TEAMS=24 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=24 THREAD_LIMIT=160, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.077510 sec (not counted)
+serial run 1: 0.074158 sec
+serial run 2: 0.073663 sec
+serial run 3: 0.073688 sec
+serial run 4: 0.073590 sec
+serial avg: 0.073775 sec
+
+gpu-combined warm-up: 0.011570 sec (not counted)
+gpu-combined run 1: 0.007697 sec
+gpu-combined run 2: 0.007654 sec
+gpu-combined run 3: 0.007620 sec
+gpu-combined run 4: 0.007618 sec
+gpu (combined) avg: 0.007647 sec
+
+gpu-nested warm-up: 0.010656 sec (not counted)
+gpu-nested run 1: 0.007169 sec
+gpu-nested run 2: 0.007116 sec
+gpu-nested run 3: 0.007113 sec
+gpu-nested run 4: 0.007128 sec
+gpu (nested) avg: 0.007132 sec
+
+Results:
+  serial:       0.073775 sec
+  gpu combined: 0.007647 sec  speedup=9.65x
+  gpu nested:   0.007132 sec  speedup=10.34x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=192 NUM_TEAMS=20 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=20 THREAD_LIMIT=192, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.077284 sec (not counted)
+serial run 1: 0.074219 sec
+serial run 2: 0.074180 sec
+serial run 3: 0.073489 sec
+serial run 4: 0.074261 sec
+serial avg: 0.074037 sec
+
+gpu-combined warm-up: 0.011071 sec (not counted)
+gpu-combined run 1: 0.007960 sec
+gpu-combined run 2: 0.007919 sec
+gpu-combined run 3: 0.007880 sec
+gpu-combined run 4: 0.007893 sec
+gpu (combined) avg: 0.007913 sec
+
+gpu-nested warm-up: 0.010776 sec (not counted)
+gpu-nested run 1: 0.007257 sec
+gpu-nested run 2: 0.007246 sec
+gpu-nested run 3: 0.007240 sec
+gpu-nested run 4: 0.007223 sec
+gpu (nested) avg: 0.007241 sec
+
+Results:
+  serial:       0.074037 sec
+  gpu combined: 0.007913 sec  speedup=9.36x
+  gpu nested:   0.007241 sec  speedup=10.22x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=256 NUM_TEAMS=15 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=15 THREAD_LIMIT=256, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.077152 sec (not counted)
+serial run 1: 0.073527 sec
+serial run 2: 0.073558 sec
+serial run 3: 0.073678 sec
+serial run 4: 0.074415 sec
+serial avg: 0.073794 sec
+
+gpu-combined warm-up: 0.012019 sec (not counted)
+gpu-combined run 1: 0.007999 sec
+gpu-combined run 2: 0.007981 sec
+gpu-combined run 3: 0.007934 sec
+gpu-combined run 4: 0.007967 sec
+gpu (combined) avg: 0.007970 sec
+
+gpu-nested warm-up: 0.010848 sec (not counted)
+gpu-nested run 1: 0.007350 sec
+gpu-nested run 2: 0.007331 sec
+gpu-nested run 3: 0.007319 sec
+gpu-nested run 4: 0.007349 sec
+gpu (nested) avg: 0.007337 sec
+
+Results:
+  serial:       0.073794 sec
+  gpu combined: 0.007970 sec  speedup=9.26x
+  gpu nested:   0.007337 sec  speedup=10.06x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=320 NUM_TEAMS=12 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=12 THREAD_LIMIT=320, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.077082 sec (not counted)
+serial run 1: 0.074778 sec
+serial run 2: 0.074481 sec
+serial run 3: 0.073714 sec
+serial run 4: 0.073820 sec
+serial avg: 0.074198 sec
+
+gpu-combined warm-up: 0.012609 sec (not counted)
+gpu-combined run 1: 0.008538 sec
+gpu-combined run 2: 0.008619 sec
+gpu-combined run 3: 0.008479 sec
+gpu-combined run 4: 0.008497 sec
+gpu (combined) avg: 0.008533 sec
+
+gpu-nested warm-up: 0.011230 sec (not counted)
+gpu-nested run 1: 0.007779 sec
+gpu-nested run 2: 0.007762 sec
+gpu-nested run 3: 0.007725 sec
+gpu-nested run 4: 0.007742 sec
+gpu (nested) avg: 0.007752 sec
+
+Results:
+  serial:       0.074198 sec
+  gpu combined: 0.008533 sec  speedup=8.70x
+  gpu nested:   0.007752 sec  speedup=9.57x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=384 NUM_TEAMS=10 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=10 THREAD_LIMIT=384, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.081185 sec (not counted)
+serial run 1: 0.074108 sec
+serial run 2: 0.073910 sec
+serial run 3: 0.073608 sec
+serial run 4: 0.073790 sec
+serial avg: 0.073854 sec
+
+gpu-combined warm-up: 0.011638 sec (not counted)
+gpu-combined run 1: 0.008644 sec
+gpu-combined run 2: 0.008599 sec
+gpu-combined run 3: 0.008552 sec
+gpu-combined run 4: 0.008639 sec
+gpu (combined) avg: 0.008609 sec
+
+gpu-nested warm-up: 0.011527 sec (not counted)
+gpu-nested run 1: 0.007799 sec
+gpu-nested run 2: 0.007806 sec
+gpu-nested run 3: 0.007821 sec
+gpu-nested run 4: 0.007821 sec
+gpu (nested) avg: 0.007812 sec
+
+Results:
+  serial:       0.073854 sec
+  gpu combined: 0.008609 sec  speedup=8.58x
+  gpu nested:   0.007812 sec  speedup=9.45x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=480 NUM_TEAMS=8 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=8 THREAD_LIMIT=480, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.077576 sec (not counted)
+serial run 1: 0.073774 sec
+serial run 2: 0.074297 sec
+serial run 3: 0.074251 sec
+serial run 4: 0.074027 sec
+serial avg: 0.074087 sec
+
+gpu-combined warm-up: 0.012935 sec (not counted)
+gpu-combined run 1: 0.009174 sec
+gpu-combined run 2: 0.009161 sec
+gpu-combined run 3: 0.009029 sec
+gpu-combined run 4: 0.009103 sec
+gpu (combined) avg: 0.009117 sec
+
+gpu-nested warm-up: 0.011987 sec (not counted)
+gpu-nested run 1: 0.008417 sec
+gpu-nested run 2: 0.008382 sec
+gpu-nested run 3: 0.008420 sec
+gpu-nested run 4: 0.008361 sec
+gpu (nested) avg: 0.008395 sec
+
+Results:
+  serial:       0.074087 sec
+  gpu combined: 0.009117 sec  speedup=8.13x
+  gpu nested:   0.008395 sec  speedup=8.83x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=512 NUM_TEAMS=8 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=8 THREAD_LIMIT=512, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.077842 sec (not counted)
+serial run 1: 0.073907 sec
+serial run 2: 0.073621 sec
+serial run 3: 0.073752 sec
+serial run 4: 0.074365 sec
+serial avg: 0.073911 sec
+
+gpu-combined warm-up: 0.011192 sec (not counted)
+gpu-combined run 1: 0.008848 sec
+gpu-combined run 2: 0.008805 sec
+gpu-combined run 3: 0.008798 sec
+gpu-combined run 4: 0.008819 sec
+gpu (combined) avg: 0.008817 sec
+
+gpu-nested warm-up: 0.011625 sec (not counted)
+gpu-nested run 1: 0.008205 sec
+gpu-nested run 2: 0.008197 sec
+gpu-nested run 3: 0.008172 sec
+gpu-nested run 4: 0.008155 sec
+gpu (nested) avg: 0.008182 sec
+
+Results:
+  serial:       0.073911 sec
+  gpu combined: 0.008817 sec  speedup=8.38x
+  gpu nested:   0.008182 sec  speedup=9.03x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=640 NUM_TEAMS=6 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=6 THREAD_LIMIT=640, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.079209 sec (not counted)
+serial run 1: 0.073902 sec
+serial run 2: 0.073920 sec
+serial run 3: 0.073868 sec
+serial run 4: 0.073779 sec
+serial avg: 0.073867 sec
+
+gpu-combined warm-up: 0.013660 sec (not counted)
+gpu-combined run 1: 0.009828 sec
+gpu-combined run 2: 0.009770 sec
+gpu-combined run 3: 0.009774 sec
+gpu-combined run 4: 0.009779 sec
+gpu (combined) avg: 0.009788 sec
+
+gpu-nested warm-up: 0.011204 sec (not counted)
+gpu-nested run 1: 0.009250 sec
+gpu-nested run 2: 0.009224 sec
+gpu-nested run 3: 0.009298 sec
+gpu-nested run 4: 0.009232 sec
+gpu (nested) avg: 0.009251 sec
+
+Results:
+  serial:       0.073867 sec
+  gpu combined: 0.009788 sec  speedup=7.55x
+  gpu nested:   0.009251 sec  speedup=7.98x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=768 NUM_TEAMS=5 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=5 THREAD_LIMIT=768, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.077127 sec (not counted)
+serial run 1: 0.081874 sec
+serial run 2: 0.077642 sec
+serial run 3: 0.077416 sec
+serial run 4: 0.079036 sec
+serial avg: 0.078992 sec
+
+gpu-combined warm-up: 0.014231 sec (not counted)
+gpu-combined run 1: 0.010191 sec
+gpu-combined run 2: 0.010286 sec
+gpu-combined run 3: 0.010248 sec
+gpu-combined run 4: 0.010334 sec
+gpu (combined) avg: 0.010265 sec
+
+gpu-nested warm-up: 0.013862 sec (not counted)
+gpu-nested run 1: 0.010184 sec
+gpu-nested run 2: 0.011144 sec
+gpu-nested run 3: 0.010847 sec
+gpu-nested run 4: 0.010962 sec
+gpu (nested) avg: 0.010784 sec
+
+Results:
+  serial:       0.078992 sec
+  gpu combined: 0.010265 sec  speedup=7.70x
+  gpu nested:   0.010784 sec  speedup=7.32x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=960 NUM_TEAMS=4 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=4 THREAD_LIMIT=960, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.075836 sec (not counted)
+serial run 1: 0.073408 sec
+serial run 2: 0.072999 sec
+serial run 3: 0.073256 sec
+serial run 4: 0.072957 sec
+serial avg: 0.073155 sec
+
+gpu-combined warm-up: 0.018025 sec (not counted)
+gpu-combined run 1: 0.013189 sec
+gpu-combined run 2: 0.012265 sec
+gpu-combined run 3: 0.012318 sec
+gpu-combined run 4: 0.012765 sec
+gpu (combined) avg: 0.012634 sec
+
+gpu-nested warm-up: 0.019119 sec (not counted)
+gpu-nested run 1: 0.011763 sec
+gpu-nested run 2: 0.012268 sec
+gpu-nested run 3: 0.012336 sec
+gpu-nested run 4: 0.012058 sec
+gpu (nested) avg: 0.012106 sec
+
+Results:
+  serial:       0.073155 sec
+  gpu combined: 0.012634 sec  speedup=5.79x
+  gpu nested:   0.012106 sec  speedup=6.04x
+verification combined: OK
+verification nested:   OK
+
+----- IMAGE=1500.bmp THREAD_LIMIT=1024 NUM_TEAMS=4 -----
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+sobel.c:67:31: warning: '/*' within block comment [-Wcomment]
+   67 | /* ====== ARXI BMP utilities (/* vasisnema ston dosmeno kwdika me prosthetous elegxous sfalmatwn) ====== */
+      |                               ^
+1 warning generated.
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_nested_l413 is out of range. .minnctapersm will be ignored
+ptxas warning : Value of threads per SM for entry __omp_offloading_fd01_401145d4_sobel_omp_device_l346 is out of range. .minnctapersm will be ignored
+<<< Sobel filter (h=1500, w=1500) >>>
+NUM_TEAMS=4 THREAD_LIMIT=1024, runs=4 (+1 warm-up)
+OpenMP offloading status:
+  omp_get_num_devices()     = 1
+  omp_get_default_device()  = 0
+  in-target omp_is_initial_device() = 0  -> running on device (correct)
+  GPU offloading available: YES (devices=1)
+
+serial warm-up: 0.076747 sec (not counted)
+serial run 1: 0.073703 sec
+serial run 2: 0.073405 sec
+serial run 3: 0.073502 sec
+serial run 4: 0.073390 sec
+serial avg: 0.073500 sec
+
+gpu-combined warm-up: 0.014844 sec (not counted)
+gpu-combined run 1: 0.012025 sec
+gpu-combined run 2: 0.013339 sec
+gpu-combined run 3: 0.012628 sec
+gpu-combined run 4: 0.012467 sec
+gpu (combined) avg: 0.012615 sec
+
+gpu-nested warm-up: 0.015436 sec (not counted)
+gpu-nested run 1: 0.012314 sec
+gpu-nested run 2: 0.011716 sec
+gpu-nested run 3: 0.011485 sec
+gpu-nested run 4: 0.012160 sec
+gpu (nested) avg: 0.011919 sec
+
+Results:
+  serial:       0.073500 sec
+  gpu combined: 0.012615 sec  speedup=5.83x
+  gpu nested:   0.011919 sec  speedup=6.17x
+verification combined: OK
+verification nested:   OK
+
+==========================================
+OLA TA PEIRAMATA OLOKLIRWTHIKAN
+==========================================
