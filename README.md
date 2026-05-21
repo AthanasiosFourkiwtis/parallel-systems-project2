@@ -30,8 +30,8 @@
 χρονομέτρηση **συμπεριλαμβανομένων** των μεταφορών host↔device, και
 επαλήθευση ορθότητας με τα δοσμένα `Cmat<N>.txt`.
 
-**Πώς το σκέφτηκα:**
-Αρχικά **Tiled με shared memory αντί naive.** Οπότε ξεκίνησα από μια naive έκδοση όπου
+
+Αρχικά ξεκίνησα με την  **Tiled με shared memory αντί naive.** Οπότε ξεκίνησα από μια naive έκδοση όπου
   κάθε thread διάβαζε μόνο του από global memory — ήταν πολύ αργή. Πέρασα σε
   tiled, με δύο shared arrays (`As`, `Bs`) μεγέθους `TILE_SIZE×TILE_SIZE`,
   ώστε κάθε στοιχείο του A/B να διαβάζεται από την global memory **μία φορά
@@ -65,31 +65,25 @@ nvcc -O2 -x cu -DN=1024 -DTHREADS=128 matrix-mul.c -o matrix-mul
 δουλειάς (combined vs nested directives), για 3 εικόνες (500/1000/1500
 pixels) και διάφορες παραμέτρους `num_teams`/`thread_limit`.
 
-**Πώς το σκέφτηκα:**
 
-- **Δύο GPU εκδόσεις.**
-  - `sobel_omp_device` (**combined**): μία οδηγία `target teams distribute
+Αρχικά έχω  **Δύο GPU εκδόσεις.** την `sobel_omp_device` (**combined**): μία οδηγία `target teams distribute
     parallel for collapse(2)`. Τα δύο loops (γραμμές × στήλες) ενώνονται
     σε έναν χώρο iterations και ο compiler μοιράζει όλα τα pixels στα
-    teams/threads.
-  - `sobel_omp_device_nested` (**nested**): χωριστά `target` → `teams
+    teams/threads και την `sobel_omp_device_nested` (**nested**): χωριστά `target` → `teams
     distribute` (γραμμές στα teams) → `parallel for` (στήλες στα threads).
-- **Mapping δεδομένων.** Τα κανάλια εισόδου (`in_r/g/b`) και τα Sobel
+     Με την **Mapping δεδομένων.** Τα κανάλια εισόδου (`in_r/g/b`) και τα Sobel
   kernels (`Gx`, `Gy`) μπαίνουν με `map(to:)` — μόνο διαβάζονται. Τα κανάλια
   εξόδου με `map(from:)` — μόνο γράφονται και επιστρέφουν στον host.
-- **Επιλογή `num_teams` και `thread_limit`.** Το `run_experiments.sh`
+Στην συνέχεια μέσω της **Επιλογής `num_teams` και `thread_limit`.** Το `run_experiments.sh`
   δοκιμάζει 15 ζευγάρια από `(32, 120)` μέχρι `(1024, 4)`, ώστε τα `teams
   × thread_limit` να καλύπτουν τους 3840 cores της P40. Τα thread limits
   είναι **πολλαπλάσια του 32** επειδή το warp της NVIDIA έχει 32 threads
-  — διαφορετικά υπάρχουν idle lanes.
-- **Race conditions.** Οι μεταβλητές συσσώρευσης (`rx, ry, gx, gy, bx, by`)
+   διαφορετικά υπάρχουν idle lanes. Παράλληλα με τα  **Race conditions.** Οι μεταβλητές συσσώρευσης (`rx, ry, gx, gy, bx, by`)
   είναι δηλωμένες **μέσα** στο εξωτερικό loop, οπότε είναι private ανά
   iteration/pixel και δεν χρειάζεται explicit `private()` clause.
-- **Clamping inline αντί για συνάρτηση.** Στην GPU έκδοση το `clamp`
+Τέλος μέσω της **Clamping inline αντί για συνάρτηση.** Στην GPU έκδοση το `clamp`
   είναι inlined με `if`-εκφράσεις, για να αποφύγω function calls μέσα στο
-  hot loop.
-- **Warm-up + 4 runs**, ίδιο μοτίβο με την Άσκηση 1.
-- **Επαλήθευση pixel-pixel** ανάμεσα στις GPU εκδόσεις και τη σειριακή.
+  hot loop. **Warm-up + 4 runs**, ίδιο μοτίβο με την Άσκηση 1. **Επαλήθευση pixel-pixel** ανάμεσα στις GPU εκδόσεις και τη σειριακή.
 
 **Compile & run:**
 
