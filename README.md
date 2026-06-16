@@ -66,6 +66,16 @@ nvcc -O2 -x cu -DN=1024 -DTHREADS=128 matrix-mul.c -o matrix-mul
 ./matrix-mul
 ```
 
+**Αποτελέσματα:**
+
+| Χρόνοι εκτέλεσης (GPU, ανά N & threads/block) | Σύγκριση σειριακό vs GPU |
+|---|---|
+| ![Χρόνοι matmul](plot_matmul_bars.png) | ![Σειριακό vs GPU](plot_matmul_serial_vs_gpu.png) |
+
+| Κλιμάκωση χρόνου με το N | Speedup έναντι σειριακού |
+|---|---|
+| ![matmul χρόνοι](plot_matmul.png) | ![matmul speedup](plot_matmul_speedup.png) |
+
 ## Άσκηση 2 — Sobel filter με OpenMP target offloading (50%)
 
 **Τι ζητάει:** εφαρμογή του Sobel edge-detection σε εικόνες BMP 24-bit
@@ -109,6 +119,12 @@ clang -O2 -fopenmp -fopenmp-targets=nvptx64-nvidia-cuda \
       -DNUM_TEAMS=30 -DTHREAD_LIMIT=128 sobel.c -lm -o sobel
 ./sobel 1500.bmp
 ```
+
+**Αποτελέσματα:**
+
+| Χρόνοι εκτέλεσης (ανά εικόνα & config) | Speedup έναντι σειριακού |
+|---|---|
+| ![Sobel χρόνοι](plot_sobel_times.png) | ![Sobel speedup](plot_sobel_speedup.png) |
 
 ## Εκτέλεση όλων των πειραμάτων
 
