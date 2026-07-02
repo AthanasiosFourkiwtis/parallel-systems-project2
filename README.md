@@ -5,31 +5,31 @@ Two problems parallelized on the GPU:
 1. Matrix multiplication with CUDA
 2. Sobel filter with OpenMP target offloading
 
-Both exercises are compared against their serial versions and the speedup is measured.
+Both exercises are compared with the serial version and I measure the speedup.
 
 Student: Athanasios Fourkiotis (ID 4940) — 2025–26
-Execution system: parallax (NVIDIA Tesla P40)
+Ran on: parallax (NVIDIA Tesla P40)
 
 ## Files
 
-| File | Description |
+| File | What it is |
 |---|---|
-| `matmul_serial.c` | Serial matrix multiplication (provided) |
+| `matmul_serial.c` | Serial matrix multiplication (given) |
 | `matrix-mul.c` | Exercise 1 — CUDA matmul |
 | `sobel.c` | Exercise 2 — serial Sobel + two GPU versions |
-| `run_experiments.sh` | Runs every scenario |
+| `run_experiments.sh` | Runs all the scenarios |
 | `Amat{N}.txt`, `Bmat{N}.txt` | Matrix inputs (N = 512, 1024, 2048) |
-| `Cmat{N}.txt` | Expected results for verification |
+| `Cmat{N}.txt` | Expected results for checking |
 | `500.bmp`, `1000.bmp`, `1500.bmp` | Input images for Sobel |
-| `results.txt` | Measurement output |
+| `results.txt` | Output of the measurements |
 | `plot_*.png` | Charts |
-| `Anafora2.pdf` | Written report |
+| `Anafora2.pdf` | My report |
 
 ## Exercise 1 — CUDA matrix multiplication
 
 Computes `C = A · B` in CUDA for N = 512, 1024, 2048 and threads/block = 128, 256, 512.
-The implementation is tiled with shared memory. GPU timing includes the
-host↔device transfers. The result is verified against the serial version and against `Cmat<N>.txt`.
+The implementation is tiled with shared memory. The GPU timing also counts the
+host↔device transfers. The result is checked against the serial version and against `Cmat<N>.txt`.
 
 Compile & run:
 
@@ -50,10 +50,10 @@ Results:
 
 ## Exercise 2 — Sobel filter (OpenMP target)
 
-Applies Sobel edge detection to 24-bit BMP images on the GPU using OpenMP `target`.
+Sobel edge detection on 24-bit BMP images, on the GPU with OpenMP `target`.
 There are two GPU versions: a combined one (`target teams distribute parallel for collapse(2)`)
-and a nested one (separate `teams distribute` and `parallel for` directives). Three
-images and several `num_teams` / `thread_limit` values are tried. The results are verified
+and a nested one (separate `teams distribute` and `parallel for` directives). I try
+3 images and different `num_teams` / `thread_limit` values. The results are checked
 pixel by pixel against the serial version.
 
 Compile & run:
@@ -76,8 +76,8 @@ Results:
 bash run_experiments.sh > results.txt 2>&1
 ```
 
-The script runs every combination and writes the output to `results.txt`.
+The script runs all the combinations and writes the output to `results.txt`.
 
 ## Report
 
-All the measurements, charts, and discussion of the results are in `Anafora2.pdf`.
+All the measurements, the charts and the discussion of the results are in `Anafora2.pdf`.
