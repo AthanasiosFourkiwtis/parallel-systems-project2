@@ -1,6 +1,6 @@
 /*
- * MYE023 - Ergasia 2 - Askisi 2
- * Sobel filter sti GPU me OpenMP target offloading
+ * MYE023 - Assignment 2 - Exercise 2
+ * Sobel filter on the GPU with OpenMP target offloading
  * Fourkiotis Athanasios, 4940
  *
  * compile:
@@ -17,7 +17,7 @@
 #include <sys/time.h>
 #include <omp.h>
 
-/* defaults, sto script ta vazw apo to compile gia kathe peirama */
+/* defaults; the script overrides them at compile time for each experiment */
 #ifndef NUM_TEAMS
 #define NUM_TEAMS 30
 #endif
@@ -26,7 +26,7 @@
 #define THREAD_LIMIT 128
 #endif
 
-#pragma pack(push, 2)  /*Αυτό είναι δομή που κρατά πληροφορίες για BMP αρχείο.*/
+#pragma pack(push, 2)  /* This struct holds the metadata of a BMP file. */
 typedef struct bmpheader_ {
     char sign;
     int size;
@@ -46,7 +46,7 @@ typedef struct bmpheader_ {
 } bmpheader_t;
 #pragma pack(pop)
 
-/* Η δομή img_t κρατάει και τα raw BMP δεδομένα και τα τρία RGB κανάλια ξεχωριστά. Το Sobel εφαρμόζεται ξεχωριστά σε red, green και blue. */
+/* The img_t struct holds both the raw BMP data and the three RGB channels separately. Sobel is applied independently to red, green, and blue. */
 typedef struct img_ {
     bmpheader_t header;
     int rgb_width;
@@ -60,11 +60,11 @@ void sobel_serial(img_t *, img_t *);
 void sobel_omp_device(img_t *, img_t *);
 void sobel_omp_device_nested(img_t *, img_t *);
 
-/* ----- BMP utilities (apo ton dosmeno kwdika, prosthesa kapoia error checks) ----- */
+/* ----- BMP utilities (from the provided code; I added some error checks) ----- */
 
 static
 void bmp_read_img_from_file(char *inputfile, img_t *img)
-/*Η bmp_read_img_from_file διαβάζει την εικόνα BMP από αρχείο, ελέγχει ότι είναι 24-bit και φορτώνει τα raw pixel data στη μνήμη.*/
+/* bmp_read_img_from_file reads the BMP image from a file, checks that it is 24-bit, and loads the raw pixel data into memory. */
 {
     FILE *file;
     bmpheader_t *header = &(img->header);
@@ -123,7 +123,7 @@ void bmp_read_img_from_file(char *inputfile, img_t *img)
 static
 void bmp_clone_empty_img(img_t *imgin, img_t *imgout)
 {
-	/*Η bmp_clone_empty_img δημιουργεί μία κενή εικόνα εξόδου με το ίδιο μέγεθος και header με την είσοδο.*/
+	/* bmp_clone_empty_img creates an empty output image with the same size and header as the input. */
     imgout->header = imgin->header;
     imgout->imgdata =
         (unsigned char*) calloc(imgout->header.arraywidth, sizeof(unsigned char));
@@ -170,7 +170,7 @@ void bmp_write_data_to_file(char *fname, img_t *img)
 static
 void bmp_rgb_from_data(img_t *img)
 {
-	/*Η bmp_rgb_from_data μετατρέπει τα raw δεδομένα της εικόνας σε τρεις ξεχωριστούς πίνακες RGB.*/
+	/* bmp_rgb_from_data converts the raw image data into three separate RGB arrays. */
     bmpheader_t *bmph = &(img->header);
 
     int i, j, pos = 0;
@@ -189,7 +189,7 @@ void bmp_rgb_from_data(img_t *img)
 static
 void bmp_data_from_rgb(img_t *img)
 {
-	/*Η bmp_data_from_rgb ξαναενώνει τα RGB κανάλια σε raw BMP δεδομένα για να αποθηκευτεί η εικόνα.*/
+	/* bmp_data_from_rgb joins the RGB channels back into raw BMP data so the image can be saved. */
     bmpheader_t *bmph = &(img->header);
     int i, j, pos = 0;
     int width = bmph->width, height = bmph->height;
@@ -207,7 +207,7 @@ void bmp_data_from_rgb(img_t *img)
 static
 void bmp_rgb_alloc(img_t *img)
 {
-	/*Η bmp_rgb_alloc δεσμεύει μνήμη για τα τρία κανάλια RGB, ώστε κάθε κανάλι να είναι ξεχωριστός πίνακας μεγέθους width × height.*/
+	/* bmp_rgb_alloc allocates memory for the three RGB channels, so each channel is its own width x height array. */
     int width, height;
 
     width = img->header.width;
@@ -252,9 +252,9 @@ void bmp_img_free(img_t *img)
     free(img->imgdata);
 }
 
-/* ----- telos BMP utilities ----- */
+/* ----- end of BMP utilities ----- */
 
-/* Η clamp χρειάζεται για τα pixels στα όρια της εικόνας. Αν η γειτονιά 3×3 βγει έξω από την εικόνα, περιορίζω τις συντεταγμένες μέσα στα έγκυρα όρια. */
+/* clamp is needed for the pixels at the image borders. If the 3x3 neighborhood falls outside the image, the coordinates are clamped to the valid range. */
 int clamp(int i , int min , int max)
 {
     if (i < min) return min;
@@ -262,7 +262,7 @@ int clamp(int i , int min , int max)
     return i;
 }
 
-/* seiriako Sobel - opws dothike, den to peiraxa */
+/* serial Sobel - as provided, left untouched */
 void sobel_serial(img_t *imgin, img_t *imgout)
 {
     int width = imgin->header.width;
@@ -326,7 +326,7 @@ void sobel_serial(img_t *imgin, img_t *imgout)
 }
 
 
-/* sundiastiki odigia: target teams distribute parallel for collapse(2) */
+/* combined directive: target teams distribute parallel for collapse(2) */
 void sobel_omp_device(img_t *imgin, img_t *imgout)
 {
     int width  = imgin->header.width;
@@ -343,21 +343,21 @@ void sobel_omp_device(img_t *imgin, img_t *imgout)
     int Gx[9] = { -1, 0, 1, -2, 0, 2, -1, 0, 1 };
     int Gy[9] = { -1, -2, -1, 0, 0, 0, 1, 2, 1 };
 	
-	/*Η combined έκδοση βάζει όλο το offloading σε μία οδηγία: target teams distribute parallel for collapse(2). Έτσι τα δύο loops της εικόνας ενώνονται και κάθε iteration 
-	αντιστοιχεί σε ένα pixel. Τα input κανάλια και τα Sobel kernels στέλνονται στη GPU με map(to:), ενώ τα output κανάλια επιστρέφουν με map(from:).*/
+	/* The combined version packs all the offloading into a single directive: target teams distribute parallel for collapse(2). The two image loops are fused and each iteration
+	corresponds to one pixel. The input channels and the Sobel kernels are shipped to the GPU with map(to:), while the output channels come back with map(from:). */
 	
 	
-    #pragma omp target teams distribute parallel for collapse(2) \ /*Το target μεταφέρει την εκτέλεση στη GPU.Επίσης Το collapse(2) ενώνει τα δύο loops
-	γραμμές και στήλες, σε έναν μεγάλο χώρο επαναλήψεων. Έτσι ο compiler μοιράζει πιο εύκολα όλα τα pixels στα teams και threads.*/ 
-        map(to: in_r[0:total], in_g[0:total], in_b[0:total]) \ /*Το map λέει ποια δεδομένα μεταφέρονται μεταξύ CPU και GPU.*/
+    #pragma omp target teams distribute parallel for collapse(2) \ /* target moves execution to the GPU. collapse(2) also fuses the two loops,
+	rows and columns, into one big iteration space, so the compiler spreads all the pixels across teams and threads more easily. */ 
+        map(to: in_r[0:total], in_g[0:total], in_b[0:total]) \ /* map states which data moves between CPU and GPU. */
         map(to: Gx[0:9], Gy[0:9]) \
         map(from: out_r[0:total], out_g[0:total], out_b[0:total]) \
-        num_teams(NUM_TEAMS) thread_limit(THREAD_LIMIT) /* Το num_teams καθορίζει πόσες ομάδες δημιουργούνται στη GPU και το thread_limit καθορίζει πόσα threads μπορεί 
-		να έχει κάθε ομάδα. Τα thread limits τα έβαλα πολλαπλάσια του 32 επειδή στις NVIDIA GPUs το warp έχει 32 threads.*/
+        num_teams(NUM_TEAMS) thread_limit(THREAD_LIMIT) /* num_teams sets how many teams are created on the GPU and thread_limit caps how many threads
+		each team may have. I picked thread limits that are multiples of 32, since on NVIDIA GPUs a warp is 32 threads. */
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
-            int rx = 0, ry = 0, gx = 0, gy = 0, bx = 0, by = 0; /*Οι μεταβλητές rx, ry, gx, gy, bx, by είναι τοπικές για κάθε iteration/pixel, άρα κάθε thread έχει δικά του 
-																αθροίσματα και δεν υπάρχει race condition.*/
+            int rx = 0, ry = 0, gx = 0, gy = 0, bx = 0, by = 0; /* rx, ry, gx, gy, bx, by are local to each iteration/pixel, so every thread keeps its own
+																sums and there is no race condition. */
 
             for (int kr = -1; kr <= 1; kr++) {
                 for (int kc = -1; kc <= 1; kc++) {
@@ -365,7 +365,7 @@ void sobel_omp_device(img_t *imgin, img_t *imgout)
                     int x = j + kc;
                     int y = i + kr;
 
-                    /* clamp inline (akrwn tis eikonas) */
+                    /* inline clamp (image borders) */
                     if (x < 0) x = 0;
                     if (x >= width)  x = width - 1;
                     if (y < 0) y = 0;
@@ -386,7 +386,7 @@ void sobel_omp_device(img_t *imgin, img_t *imgout)
             int g = (int)sqrt((double)(gx * gx + gy * gy));
             int b = (int)sqrt((double)(bx * bx + by * by));
 
-            /* clamp ston [0,255]. Den exoume kato apo 0 giati to sqrt vgazei thetiko. */
+            /* clamp to [0,255]. Nothing falls below 0, since sqrt returns a non-negative value. */
             if (r > 255) r = 255;
             if (g > 255) g = 255;
             if (b > 255) b = 255;
@@ -398,11 +398,11 @@ void sobel_omp_device(img_t *imgin, img_t *imgout)
     }
 }
 
-/* emfwleymenes odigies: teams distribute eksw, parallel for mesa.
- * stin arxi eixa kai edw collapse(2) alla evgaze idious xronous me tin
- * combined, opote to ebgala kai eyhike mikri sthatheri diafora (~10%) */
-void sobel_omp_device_nested(img_t *imgin, img_t *imgout) /*Στη nested έκδοση έχω ξεχωριστές οδηγίες. Το target μεταφέρει την εκτέλεση στη GPU, το teams distribute 
-										μοιράζει τον εξωτερικό βρόχο των γραμμών στα teams, και το parallel for μοιράζει τον εσωτερικό βρόχο των στηλών στα threads.*/
+/* nested directives: teams distribute outside, parallel for inside.
+ * At first this one had collapse(2) too, but it produced the same times as the
+ * combined version, so I removed it and a small consistent difference (~10%) appeared. */
+void sobel_omp_device_nested(img_t *imgin, img_t *imgout) /* The nested version uses separate directives. target moves execution to the GPU, teams distribute
+										shares the outer loop over rows among the teams, and parallel for shares the inner loop over columns among the threads. */
 {
     int width  = imgin->header.width;
     int height = imgin->header.height;
@@ -422,8 +422,8 @@ void sobel_omp_device_nested(img_t *imgin, img_t *imgout) /*Στη nested έκδ
         map(to: Gx[0:9], Gy[0:9])                                            \
         map(from: out_r[0:total], out_g[0:total], out_b[0:total])
     {
-        #pragma omp teams distribute num_teams(NUM_TEAMS) thread_limit(THREAD_LIMIT) /*Το teams δημιουργεί ομάδες από threads στη GPU
-		κάτι αντίστοιχο με τα blocks στη CUDA και το distribute μοιράζει τις επαναλήψεις στα teams.*/
+        #pragma omp teams distribute num_teams(NUM_TEAMS) thread_limit(THREAD_LIMIT) /* teams creates groups of threads on the GPU,
+		roughly the equivalent of CUDA blocks, and distribute shares the iterations among the teams. */
         for (int i = 0; i < height; i++) {
             #pragma omp parallel for
             for (int j = 0; j < width; j++) {
@@ -467,13 +467,13 @@ void sobel_omp_device_nested(img_t *imgin, img_t *imgout) /*Στη nested έκδ
     }
 }
 
-/* xronometrisi */
+/* timing */
 double get_time(void)
 {
     return omp_get_wtime();
 }
 
-/* tsek oti pragmatika trexei sti GPU */
+/* check that it really runs on the GPU */
 void print_offloading_status(void)
 {
     int num_devs = omp_get_num_devices();
@@ -495,14 +495,14 @@ void print_offloading_status(void)
            num_devs > 0 ? "YES" : "NO", num_devs);
 }
 
-/* trexei mia synartisi RUNS fores kai gyrnaei to meso oro.
- * exei kai mia warm-up ektelesh prin gia na zestathei i GPU */
+/* runs a function RUNS times and returns the average.
+ * A warm-up run comes first so the GPU gets warmed up. */
 double timeit_n(void (*f)(img_t *, img_t *), img_t *imgin, img_t *imgout,
                 int runs, const char *label)
 {
     double total = 0.0;
 
-    /* Warm-up: trexei kanonika ti synartisi alla o xronos den metraei. */
+    /* Warm-up: the function runs normally but the time is not counted. */
     double tw0 = get_time();
     f(imgin, imgout);
     double tw1 = get_time();
@@ -519,7 +519,7 @@ double timeit_n(void (*f)(img_t *, img_t *), img_t *imgin, img_t *imgout,
     return total / runs;
 }
 
-/* afairei tin epektasi tou arxeiou (px "1500.bmp" -> "1500") */
+/* strips the file extension (e.g. "1500.bmp" -> "1500") */
 char *remove_ext(char *str, char extsep, char pathsep)
 {
     char *newstr, *ext, *lpath;
@@ -543,7 +543,7 @@ char *remove_ext(char *str, char extsep, char pathsep)
     return newstr;
 }
 
-/* sygkrisi pixel-pixel, gyrnaei posa diaferoun */
+/* pixel-by-pixel comparison; returns how many pixels differ */
 int compare_images(img_t *a, img_t *b)
 {
     int total  = a->header.width * a->header.height;
@@ -571,7 +571,7 @@ int main(int argc, char *argv[])
 
     char *inputfile, *noextfname;
     char serial_file[128], gpu_file[128], nested_file[128];
-    int runs = 4;       /* 4 ektelseis kai meso oro */
+    int runs = 4;       /* 4 runs, averaged */
 
     if (argc < 2) {
         fprintf(stderr, "Syntax: %s <filename>, e.g. %s 1500.bmp\n",
@@ -595,7 +595,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    /* diavasma eikonas kai allocations */
+    /* read the image and do the allocations */
     bmp_read_img_from_file(inputfile, &imgin);
     bmp_clone_empty_img(&imgin, &imgout_serial);
     bmp_clone_empty_img(&imgin, &imgout_gpu);
@@ -615,7 +615,7 @@ int main(int argc, char *argv[])
 
     print_offloading_status();
 
-    /* trexoume kai tis 3 ekdoseis */
+    /* run all 3 versions */
     double serial_avg = timeit_n(sobel_serial, &imgin, &imgout_serial, runs, "serial");
     printf("serial avg: %.6f sec\n\n", serial_avg);
 
@@ -625,7 +625,7 @@ int main(int argc, char *argv[])
     double nested_avg = timeit_n(sobel_omp_device_nested, &imgin, &imgout_nested, runs, "gpu-nested");
     printf("gpu (nested) avg: %.6f sec\n\n", nested_avg);
 
-    /* epalitheysi me ti seiriaki */
+    /* verify against the serial version */
     int err1 = compare_images(&imgout_serial, &imgout_gpu);
     int err2 = compare_images(&imgout_serial, &imgout_nested);
 
@@ -636,7 +636,7 @@ int main(int argc, char *argv[])
     printf("verification combined: %s\n", err1 == 0 ? "OK" : "WRONG");
     printf("verification nested:   %s\n", err2 == 0 ? "OK" : "WRONG");
 
-    /* save twn 3 ekdosewn ws BMP gia na vlepoume kai me to mati */
+    /* save the 3 versions as BMP for visual inspection too */
     bmp_data_from_rgb(&imgout_serial);
     bmp_data_from_rgb(&imgout_gpu);
     bmp_data_from_rgb(&imgout_nested);

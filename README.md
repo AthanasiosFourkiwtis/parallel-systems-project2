@@ -1,35 +1,35 @@
-# MYE023 – Παράλληλα Συστήματα, Εργασία #2 (GPU)
+# MYE023 – Parallel Systems, Assignment #2 (GPU)
 
-Δύο προβλήματα παραλληλοποιημένα σε GPU:
+Two problems parallelized on the GPU:
 
-1. Πολλαπλασιασμός πινάκων με CUDA
-2. Sobel filter με OpenMP target offloading
+1. Matrix multiplication with CUDA
+2. Sobel filter with OpenMP target offloading
 
-Και στις δύο ασκήσεις γίνεται σύγκριση με τη σειριακή έκδοση και μέτρηση speedup.
+Both exercises are compared against their serial versions and the speedup is measured.
 
-Φοιτητής: Φουρκιώτης Αθανάσιος (ΑΜ 4940) — 2025–26
-Σύστημα εκτέλεσης: parallax (NVIDIA Tesla P40)
+Student: Athanasios Fourkiotis (ID 4940) — 2025–26
+Execution system: parallax (NVIDIA Tesla P40)
 
-## Αρχεία
+## Files
 
-| Αρχείο | Περιγραφή |
+| File | Description |
 |---|---|
-| `matmul_serial.c` | Σειριακός πολλαπλασιασμός πινάκων (δοσμένος) |
-| `matrix-mul.c` | Άσκηση 1 — CUDA matmul |
-| `sobel.c` | Άσκηση 2 — σειριακός Sobel + δύο GPU εκδόσεις |
-| `run_experiments.sh` | Τρέχει όλα τα σενάρια |
-| `Amat{N}.txt`, `Bmat{N}.txt` | Είσοδοι πινάκων (N = 512, 1024, 2048) |
-| `Cmat{N}.txt` | Αναμενόμενα αποτελέσματα για επαλήθευση |
-| `500.bmp`, `1000.bmp`, `1500.bmp` | Εικόνες εισόδου για τον Sobel |
-| `results.txt` | Έξοδος των μετρήσεων |
-| `plot_*.png` | Γραφικές |
-| `Anafora2.pdf` | Γραπτή αναφορά |
+| `matmul_serial.c` | Serial matrix multiplication (provided) |
+| `matrix-mul.c` | Exercise 1 — CUDA matmul |
+| `sobel.c` | Exercise 2 — serial Sobel + two GPU versions |
+| `run_experiments.sh` | Runs every scenario |
+| `Amat{N}.txt`, `Bmat{N}.txt` | Matrix inputs (N = 512, 1024, 2048) |
+| `Cmat{N}.txt` | Expected results for verification |
+| `500.bmp`, `1000.bmp`, `1500.bmp` | Input images for Sobel |
+| `results.txt` | Measurement output |
+| `plot_*.png` | Charts |
+| `Anafora2.pdf` | Written report |
 
-## Άσκηση 1 — CUDA matrix multiplication
+## Exercise 1 — CUDA matrix multiplication
 
-Υπολογισμός `C = A · B` σε CUDA για N = 512, 1024, 2048 και threads/block = 128, 256, 512.
-Η υλοποίηση είναι tiled με shared memory. Στη χρονομέτρηση της GPU μετρώνται και οι
-μεταφορές host↔device. Το αποτέλεσμα επαληθεύεται με τη σειριακή έκδοση και με τα `Cmat<N>.txt`.
+Computes `C = A · B` in CUDA for N = 512, 1024, 2048 and threads/block = 128, 256, 512.
+The implementation is tiled with shared memory. GPU timing includes the
+host↔device transfers. The result is verified against the serial version and against `Cmat<N>.txt`.
 
 Compile & run:
 
@@ -38,23 +38,23 @@ nvcc -O2 -x cu -DN=1024 -DTHREADS=128 matrix-mul.c -o matrix-mul
 ./matrix-mul
 ```
 
-Αποτελέσματα:
+Results:
 
-| Χρόνοι (GPU) | Σειριακό vs GPU |
+| GPU times | Serial vs GPU |
 |---|---|
-| ![Χρόνοι matmul](plot_matmul_bars.png) | ![Σειριακό vs GPU](plot_matmul_serial_vs_gpu.png) |
+| ![matmul times](plot_matmul_bars.png) | ![Serial vs GPU](plot_matmul_serial_vs_gpu.png) |
 
-| Κλιμάκωση με το N | Speedup |
+| Scaling with N | Speedup |
 |---|---|
-| ![matmul χρόνοι](plot_matmul.png) | ![matmul speedup](plot_matmul_speedup.png) |
+| ![matmul times](plot_matmul.png) | ![matmul speedup](plot_matmul_speedup.png) |
 
-## Άσκηση 2 — Sobel filter (OpenMP target)
+## Exercise 2 — Sobel filter (OpenMP target)
 
-Εφαρμογή Sobel edge-detection σε εικόνες BMP 24-bit στη GPU με OpenMP `target`.
-Υπάρχουν δύο GPU εκδόσεις: μία combined (`target teams distribute parallel for collapse(2)`)
-και μία nested (χωριστές οδηγίες `teams distribute` και `parallel for`). Δοκιμάζονται
-3 εικόνες και διάφορες τιμές `num_teams` / `thread_limit`. Τα αποτελέσματα επαληθεύονται
-pixel-pixel με τη σειριακή έκδοση.
+Applies Sobel edge detection to 24-bit BMP images on the GPU using OpenMP `target`.
+There are two GPU versions: a combined one (`target teams distribute parallel for collapse(2)`)
+and a nested one (separate `teams distribute` and `parallel for` directives). Three
+images and several `num_teams` / `thread_limit` values are tried. The results are verified
+pixel by pixel against the serial version.
 
 Compile & run:
 
@@ -64,20 +64,20 @@ clang -O2 -fopenmp -fopenmp-targets=nvptx64-nvidia-cuda \
 ./sobel 1500.bmp
 ```
 
-Αποτελέσματα:
+Results:
 
-| Χρόνοι | Speedup |
+| Times | Speedup |
 |---|---|
-| ![Sobel χρόνοι](plot_sobel_times.png) | ![Sobel speedup](plot_sobel_speedup.png) |
+| ![Sobel times](plot_sobel_times.png) | ![Sobel speedup](plot_sobel_speedup.png) |
 
-## Εκτέλεση όλων των πειραμάτων
+## Running all the experiments
 
 ```sh
 bash run_experiments.sh > results.txt 2>&1
 ```
 
-Το script τρέχει όλους τους συνδυασμούς και γράφει την έξοδο στο `results.txt`.
+The script runs every combination and writes the output to `results.txt`.
 
-## Αναφορά
+## Report
 
-Όλες οι μετρήσεις, οι γραφικές και η συζήτηση των αποτελεσμάτων βρίσκονται στο `Anafora2.pdf`.
+All the measurements, charts, and discussion of the results are in `Anafora2.pdf`.

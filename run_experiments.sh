@@ -1,27 +1,27 @@
 #!/bin/bash
-# MYE023 Ergasia 2 - script gia trexei ola ta peiramata sto parallax
+# MYE023 Assignment 2 - script that runs all the experiments on parallax
 # Athanasios Fourkiotis 4940
 #
-# treximo:  bash run_experiments.sh > results.txt 2>&1
+# usage:  bash run_experiments.sh > results.txt 2>&1
 
 set -e
 
-# kanw host threads = 1 wste na min spamarei to libomp warnings
-# (i parallili douleia ginete sti GPU mesw target offloading)
+# set host threads = 1 so libomp does not spam warnings
+# (the parallel work happens on the GPU via target offloading)
 export OMP_NUM_THREADS=1
 export OMP_MAX_ACTIVE_LEVELS=2
 
-# kapoia env-vars (KMP/OMP thread limits) prokaloun to enoxlitiko
-# "Cannot form a team with 120 threads" - ta vazoume unset
+# some env-vars (KMP/OMP thread limits) trigger the annoying
+# "Cannot form a team with 120 threads" - unset them
 unset KMP_DEVICE_THREAD_LIMIT
 unset KMP_TEAMS_THREAD_LIMIT
 unset OMP_THREAD_LIMIT
 
 echo "=========================================="
-echo "ASKISI 1 - CUDA matmul"
+echo "EXERCISE 1 - CUDA matmul"
 echo "=========================================="
 
-# ola ta zeugaria (N, THREADS) pou zita i ekfwnisi
+# every (N, THREADS) pair the handout asks for
 for N in 512 1024 2048; do
     for T in 128 256 512; do
         echo ""
@@ -33,11 +33,11 @@ done
 
 echo ""
 echo "=========================================="
-echo "ASKISI 2 - Sobel"
+echo "EXERCISE 2 - Sobel"
 echo "=========================================="
 
-# (threads_per_team, num_teams) wste na piasoume ta 3840 cores tis P40
-# vazw kai dyo eytra (512x8, 1024x4 = 4096) gia sygkrisi
+# (threads_per_team, num_teams) chosen to cover the 3840 cores of the P40
+# plus two extras (512x8, 1024x4 = 4096) for comparison
 CONFIGS=(
     "32 120"
     "64 60"
@@ -77,5 +77,5 @@ done
 
 echo ""
 echo "=========================================="
-echo "telos peiramatwn"
+echo "end of experiments"
 echo "=========================================="

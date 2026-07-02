@@ -211,7 +211,7 @@ GPU avg: 0.025109 sec
   Verification vs Cmat2048.txt: OK
 
 ==========================================
-ASKISI 2 - Sobel filter
+EXERCISE 2 - Sobel filter
 (experiments for 500x500, 1000x1000, 1500x1500)
 ==========================================
 
